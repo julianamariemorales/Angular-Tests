@@ -1,0 +1,86 @@
+<!doctype html>
+<html ng-app = "app2">
+  <head>
+     <title> Jules Angular 2</title>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"> </script>
+
+      <!-- Load the JS Module -->
+      <script src="js/exam2.js"></script>
+
+      <!-- Modernizr JS -->
+      <script src="js/modernizr-2.6.2.min.js"></script>
+
+      <!--style-->
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous">
+
+
+   </head>
+
+   <body>
+
+    <h4 ng-controller = "ctrl2"> First random timestamp: {{rand1}} </h4>
+    <h4 ng-controller = "ctrl2"> Second random timestamp: {{rand2}} </h4>
+
+    <h4  ng-controller = "playctrl"> Today I will read Shakespeare's {{splays}} </h4>
+    <h4  ng-controller = "phrasectrl"> Today I will use Shakespeare's {{sphrases}} </h4>
+
+
+
+    <div class="form-group row" ng-controller = "filterctrl">
+
+      <span class="col-md-3">
+          <input class="form-control ng-valid ng-dirty" type="text" ng-model="searchKeyword">
+      </span>
+
+      <table class="table table-striped">
+	        <tr>
+		          <th>Number</th>
+		          <th>Title</th>
+	        </tr>
+	         <tr ng-repeat="sonnet in sonnets  | filter: searchKeyword ">
+		           <td> {{sonnet.number}}</td>
+		            <td> {{sonnet.title}} </td>
+                <td>
+		                <input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow(company.name)"/>
+		            </td>
+	          </tr>
+      </table>
+
+
+      <!--add a sonnet-->
+      <form class="form-horizontal ng-valid ng-dirty" ng-submit="addRow()" role="form">
+
+          <div class="form-group">
+            <label class="col-md-2 control-label">number</label>
+              <div class="col-md-4">
+                <input class="form-control ng-valid ng-dirty" type="text" ng-model="number" name="number">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-2 control-label"><title>Sonet Title</title></label>
+                <div class="col-md-4">
+                  <input class="form-control ng-valid ng-dirty" type="text" ng-model="title" name="title">
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <div style="padding-left:110px">
+                  <input class="btn btn-primary" type="submit" value="Submit">
+                </div>
+              </div>
+      </form>
+
+    </div>
+
+   </body>
+</html>

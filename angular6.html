@@ -1,0 +1,192 @@
+<!doctype html>
+<html ng-app="app6" ng-cloak>
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>JULES ANGULAR 6</title>
+
+    <!--
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+           rel="stylesheet"
+           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+           crossorigin="anonymous">
+    -->
+
+    <!--V4 bootstrap CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+    <style>
+
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+
+    input.ng-dirty.ng-invalid {
+      border-color: red;
+    }
+    </style>
+  </head>
+  <body>
+
+    <div id="paintings list" ng-controller="pListCtrl">
+
+      <h3>Paintings List</h3>
+
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Paintings List</div>
+
+        <!-- Table -->
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Painter</th>
+                <th>Painting Title</th>
+                <th>Purchased?</th>
+              <tr>
+            </thead>
+              <tbody>
+                <tr ng-repeat="painting in paintings">
+                  <td>{{painting.painter}}</td>
+                  <td>{{painting.title}}</td>
+                  <td>
+                    <!-- Bind the checkbox to the data model -->
+                    <input type="checkbox" ng-model="painting.purchased" />
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+
+
+      <br>
+
+      <div class="well">
+      <!-- User enters a new item and when the button is clicked
+      the value in the input box is added to the array -->
+      <label>Enter Painter Name :
+        <input type="text" ng-model="newPainter" />
+      </label>
+      <br>
+      <label>Enter Painting Title :
+        <input type="text" ng-model="newPaintTitle" />
+      </label>
+      <button ng-click="addPainting(newPainter, newPaintTitle)" class="btn btn-outline-primary">Add Item</button>
+
+      <!-- Error shows here if no item was entered -->
+      <h4>{{missingNewItemError}}</h4>
+      </div>
+
+    </div> <!--end of panel-->
+    </div> <!-- End of groceryList -->
+
+
+    <div ng-controller="userCtrl">
+
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">User Info</div>
+
+
+      <!-- Pass the user data to saveUser() -->
+      <form name="userForm" ng-submit="saveUser(userInfo)">
+
+         <div class="form-group">
+           <label>First Name:</label>
+
+           <!-- Define that a value is required and it must be 2 characters in length or more -->
+           <input type="text" name="fName" ng-model="userInfo.fName"
+           ng-required="true" ng-minlength="2"/>
+
+           <!-- $dirty is set to true if a user interacts with a element and then we check if the elements required field is true -->
+           <span class="error-message" ng-show="userForm.fName.$dirty
+           && userForm.fName.$error.required">Must Enter a First Name
+          </span>
+
+          <!-- Check if the element has been edited and whether it contains at least 2 characters -->
+          <span class="error-message" ng-show="userForm.fName.$dirty
+          && userForm.fName.$error.minlength">Must be a Minimum of 2 Characters</span>
+        </div>
+
+
+        <div class="form-group">
+          <label>Last Name:</label>
+
+          <input type="text" name="lName" ng-model="userInfo.lName"
+          ng-required="true" ng-minlength="2" />
+
+          <span class="error-message" ng-show="userForm.lName.$dirty
+          && userForm.lName.$error.required">Must Enter a Last Name
+          </span>
+
+          <span class="error-message" ng-show="userForm.lName.$dirty
+          && userForm.lName.$error.minlength">Must be a Minimum of 2 Characters</span>
+        </div>
+
+        <div class="form-group">
+          <label>Street:</label>
+
+          <input type="text" name="street" ng-model="userInfo.street"
+          ng-required="true" ng-minlength="6" ng-pattern="/^(\d{3,})\s?(\w{0,5})\s([a-zA-Z]{2,30})\s([a-zA-Z]{2,15})\.?\s?(\w{0,5})$/" />
+
+          <span class="error-message" ng-show="userForm.street.$dirty
+          && userForm.street.$invalid">Must Enter a Number, Street and Street Type (ex: 123 Main St)
+          </span>
+        </div>
+
+        <div class="form-group">
+
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Delivery Method:</label>
+          <select name="delivery" ng-model="userInfo.delivery"  ng-required="true" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" >
+            <option selected>Choose...</option>
+            <option value="Email">Email</option>
+            <option value="Mail">Mail</option>
+            <option value="SMS">SMS</option>
+          </select>
+
+      <label name="subscribe" ng-model="userInfo.subscribe" ng-true-value="'Subscribe'" ng-false-value="'Don\'t Subscribe'" class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+        <input type="checkbox" class="custom-control-input">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Subscribe</span>
+      </label>
+
+
+        <br><br>
+
+        <!-- Disable the button until every element in the form is valid -->
+        <input type="submit" value="Save" ng-disabled="userForm.$invalid" class="btn btn-primary"/>
+
+        <!-- Output new users -->
+        <ul>
+        <li ng-repeat = "item in user">
+          {{ 'User: ' + item.fName + " " + item.lName + " " + item.street +
+            " " + item.subscribe + " " + item.delivery}}
+        </li>
+      </ul>
+      </form>
+    </div> <!--end of panel-->
+    </div> <!-- End of userCtrl -->
+
+
+    <!--bootstrap-->
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    -->
+
+    <!--V4 bootstrap-->
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- angular and model -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="js/exam6.js"></script>
+
+  </body>
+</html>

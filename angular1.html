@@ -1,0 +1,70 @@
+<!doctype html>
+<html ng-app = "app1"
+      ng-init= "person = {fName: 'Juliana Marie'};
+                work = {lJob: 'Programmer'};
+                company = {lCompany: 'IBM'};
+                assignments = [{shift: 'AM', department: 'Internal'}, {shift: 'PM', department: 'Commercial'}]">
+   <head>
+     <title> Jules Angular </title>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+      <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"> </script>
+      <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>-->
+
+      <!-- Load the JS Module -->
+      <script src="js/exam1.js"></script>
+      <!-- for test-->
+      <!--<script type = "text/javascript" src = "test3.js"></script>-->
+
+      <!-- Modernizr JS -->
+      <!-- <script src="js/modernizr-2.6.2.min.js"></script>-->
+
+   </head>
+
+   <body>
+      <div ng-controller = "ctrl1">
+        <span class="">Values:</span>
+        <input type="text" ng-model = "first" />
+        <input type="text" ng-model = "second" />
+        <br>
+
+        <button ng-click = "updateValue()">Sum</button>
+        <br>
+
+        {{calculation}}
+
+        <p> 5 + 5 = {{5+5}} </p>
+
+        <p>Your first value is {{first}} </p>
+        <p>Your second value is
+            <span data-ng-bind= "second"> </span>
+
+        </p>
+
+        <p> {{person.fName + "'s work is " + work.lJob}} </p>
+
+        <!--<div ng-repeat="(key, value) in myObj"> ... </div>-->
+        <!-- from https://docs.angularjs.org/api/ng/directive/ngRepeat -->
+         <ul>
+           <li ng-repeat ="shift in assignments">
+             {{'Shift: ' + shift.shift + ' Department: ' + shift.department}}
+           </li>
+         </ul>
+
+
+      </div>
+
+         <label>Name:</label>
+         <input type = "text" ng-model = "yourName" placeholder = "Enter a name here">
+         <hr />
+
+         <h1>Hello {{yourName}}!</h1>
+
+
+
+      </div>
+
+   </body>
+</html>

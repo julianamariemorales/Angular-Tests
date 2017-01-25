@@ -1,0 +1,75 @@
+<html ng-app = "app4">
+
+   <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+     <title>JULES ANGULAR 4</title>
+
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous">
+
+
+      <style>
+          [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none;
+            }
+                        }
+      </style>
+
+    </head>
+
+   <body>
+
+     <div ng-controller = 'ctrl4'>
+        <input ng-blur = "blur = blur + 1"
+               ng-click = "click = click +1"
+               ng-dblclick = "dblclick = dblclick +1"
+               ng-copy = "copy = copy +1"
+               ng-cut = "cut = cut +1"
+               ng-paste = "paste = paste +1"
+               ng-focus = "focus = focus +1"
+               ng-model = "confirmed"
+               ng-change = "change = change +1"
+
+               ng-mouseenter = "mouseenter = mouseenter +1"
+               ng-mouseleave = "mouseleave = mouseleave +1"
+               />
+
+        <h4> Blur Events: {{blur}} </h4>
+        <h4> Click Events: {{click}} </h4>
+        <h4> double click Events: {{dblclick}} </h4>
+        <h4> copy Events: {{copy}} </h4>
+        <h4> cut Events: {{cut}} </h4>
+        <h4> paste Events: {{paste}} </h4>
+        <h4> focus Events: {{focus}} </h4>
+        <h4> change Events: {{change}} </h4>
+
+        <h4> mouseenter Events: {{mouseenter}} </h4>
+        <h4> mouseleave Events: {{mouseleave}} </h4>
+
+     </div>
+
+     <input ng-keydown="count = count + 1" ng-init="count=0">
+     key down count: {{count}}
+
+     <!--
+       <h4> keydown Events: {{keydown}} </h4>
+       ng-keydown = "keydown($event)"
+     -->
+
+
+      <!-- all the scripts -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+              integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+              crossorigin="anonymous"></script>
+
+      <script src="js/exam4.js"></script>
+
+   </body>
+</html>

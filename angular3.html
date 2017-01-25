@@ -1,0 +1,85 @@
+<!doctype html>
+<html ng-app = "app3" ng-cloak>
+  <head>
+     <title> Jules Angular 3</title>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+      <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"> </script>
+      <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>-->
+
+      <!-- Load the JS Module -->
+      <script src="js/exam3.js"></script>
+      <!-- for test-->
+      <!--<script type = "text/javascript" src = "test3.js"></script>-->
+
+      <!-- Modernizr JS -->
+      <!-- <script src="js/modernizr-2.6.2.min.js"></script>-->
+
+      <style>
+      [ng\:cloak], [ng-cloak], .ng-cloak {
+        display: none;
+      }
+      </style>
+
+   </head>
+
+   <body>
+
+     <div id = "shoppingList" ng-controller= "ctrl3">
+       <h3 class = "listTitle">{{shoppingcart.length}} Items to buy</h3>
+
+       <!--get individual array items-->
+       <ol style = "margin: 0 0 -15px 0;">
+         <li> {{shoppingcart[0].item}}</li>
+       </ol>
+
+       <!--get second item onwards array items-->
+       <ol start="2">
+         <li ng-repeat= "shopitem in shoppingcart" ng-if= "$index > 0">
+           {{shopitem.item}} {{$index}}
+         </li>
+       </ol>
+
+       <table>
+         <tr ng-repeat-start= "shopitem in shoppingcart">
+           <td>
+             {{shopitem.item}}
+           </td>
+           <tr ng-repeat-end>
+             <td>
+               {{shopitem.purchase}}
+             </td>
+           </tr>
+         </table>
+
+         <!--2 way binding-->
+         <label> Change 1st item: </label>
+         <input ng-model = "shoppingcart[0].item" />
+
+         <ul>
+           <li ng-repeat "shopitem in shoppingcart">
+             {{shopitem.item}}
+           </li>
+         </ul>
+
+
+
+         <!--use ng-include-->
+         <h3>Shopping Items </h3>
+         <div ng-include =" 'shopitem -ul.html' "> </div>
+
+        <label>
+         <input type="checkbox" ng-model="showList">
+         Show Unordered List
+       </label>
+
+       <ng-include src ="getList()"> </ng-include>
+
+
+     </div>
+
+
+   </body>
+</html>
